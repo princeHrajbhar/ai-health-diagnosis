@@ -36,10 +36,10 @@ export async function POST(req: Request) {
             { message: 'Appointment booked successfully', appointment },
             { status: 201 }
         );
-    } catch (error: any) {
+    } catch (error) {
         console.error('Error creating appointment:', error);
         return NextResponse.json(
-            { error: error.message || 'Internal Server Error' },
+            { error: error instanceof Error ? error.message : 'Internal Server Error' },
             { status: 500 }
         );
     }

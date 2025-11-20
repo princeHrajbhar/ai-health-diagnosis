@@ -44,10 +44,10 @@ export async function POST(req: Request) {
             { message: 'User created successfully' },
             { status: 201 }
         );
-    } catch (error: any) {
+    } catch (error) {
         console.error('Error in register API:', error);
         return NextResponse.json(
-            { error: error.message || 'Internal Server Error' },
+            { error: error instanceof Error ? error.message : 'Internal Server Error' },
             { status: 500 }
         );
     }
